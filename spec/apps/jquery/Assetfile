@@ -1,0 +1,21 @@
+require "json"
+require "rake-pipeline"
+require "rake-pipeline-web-filters"
+require "rake-pipeline-web-filters/helpers"
+
+output "public"
+
+input File.join(File.dirname(__FILE__), "src") do
+
+  match '*.coffee' do
+    coffee_script
+    concat 'app.js'
+  end
+
+  match 'jquery*.js' do
+    concat 'app.js'
+  end
+ 
+  concat
+
+end
